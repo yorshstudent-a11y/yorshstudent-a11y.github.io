@@ -1,435 +1,128 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>مطعم فول وفلافل - MAZEN MOHAMED</title>
-    <style>
-        body {
-            font-family: Tahoma, sans-serif;
-            text-align: center;
-            background: linear-gradient(135deg, #111827, #b45309);
-            color: #fff;
-            margin: 0;
-            padding: 8px;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        h1 {
-            margin: 5px 0;
-            font-size: 24px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            color: #facc15;
-        }
-
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 15px;
-            font-weight: bold;
-            background: rgba(0,0,0,0.5);
-            padding: 6px;
-            border-radius: 10px;
-            max-width: 450px;
-            margin: 0 auto 8px auto;
-            border: 2px solid #f59e0b;
-        }
-
-        /* شاشة المطعم وحركة الزبائن */
-        .kitchen-scene {
-            position: relative;
-            background: #1f2937;
-            border: 3px solid #facc15;
-            border-radius: 12px;
-            height: 130px;
-            max-width: 600px;
-            margin: 0 auto 8px auto;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
-        }
-
-        .customer {
-            position: absolute;
-            bottom: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.8s ease-in-out;
-        }
-
-        .avatar {
-            font-size: 45px;
-        }
-
-        .order-bubble {
-            background: #fff;
-            color: #111;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: bold;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            border: 2px solid #ef4444;
-            white-space: nowrap;
-            margin-bottom: 3px;
-        }
-
-        .timer-bar-container {
-            width: 120px;
-            height: 6px;
-            background: #4b5563;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .timer-fill {
-            height: 100%;
-            background: #10b981;
-            width: 100%;
-        }
-
-        /* طاولة المكونات والأطباق البارزة */
-        .counter-area {
-            background: #f3f4f6;
-            color: #111;
-            max-width: 600px;
-            margin: 0 auto 8px auto;
-            padding: 10px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-            border: 3px solid #d97706;
-        }
-
-        .sandwich-plate {
-            background: #e5e7eb;
-            border: 2px dashed #9ca3af;
-            border-radius: 8px;
-            min-height: 40px;
-            padding: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #1f2937;
-            margin-bottom: 8px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 4px;
-            align-items: center;
-        }
-
-        .ingredients-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-        }
-
-        .ingredient-dish {
-            background: #ffffff;
-            border: 2px solid #f59e0b;
-            border-radius: 10px;
-            padding: 6px 2px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #1f2937;
-            cursor: pointer;
-            transition: transform 0.1s, background 0.2s;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .ingredient-dish span:first-child {
-            font-size: 20px;
-        }
-
-        .ingredient-dish:active {
-            transform: scale(0.92);
-        }
-        .ingredient-dish:hover {
-            background: #fef3c7;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .btn-main {
-            background: #059669;
-            color: white;
-            border: none;
-            padding: 6px 15px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .btn-main:hover { background: #047857; }
-
-        .btn-clear {
-            background: #dc2626;
-            color: white;
-            border: none;
-            padding: 6px 15px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .btn-clear:hover { background: #b91c1c; }
-
-        #gameMessage {
-            font-size: 15px;
-            font-weight: bold;
-            margin-top: 5px;
-            min-height: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jevlike - Smart Text Option Selector</title>
+    <meta name="description" content="jevlike is a lightweight AI tool that picks the best option from a list of text choices in a single pass. Perfect for buttons, menus, and decision-making tasks.">
+    <meta name="keywords" content="AI, text options, decision model, machine learning, text classification, choice selector">
+    <meta property="og:title" content="jevlike - Smart Text Option Selector">
+    <meta property="og:description" content="Train a small model that chooses among a changing list of text options in one pass.">
+    <meta property="og:type" content="software">
 </head>
-<body>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f7fa; color: #2d3748; line-height: 1.7;">
 
-    <h1>🥙 مطعم فول وفلافل (شيف مازن) 🥙</h1>
-    
-    <div class="stats-bar">
-        <span>💰 الأرباح: <span id="moneyScore">0</span> ج.م</span>
-        <span>⭐ الطلبات: <span id="successCount">0</span></span>
+    <div style="max-width: 900px; margin: 0 auto; padding: 40px 24px;">
+
+        <a href="https://github.com/yorshstudent-a11y/jevlike" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-size: 18px; font-weight: 700; padding: 16px 32px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); margin: 20px 0 40px; text-align: center; width: 100%; box-sizing: border-box;">⬇️ Get Jevlike Now</a>
+
+        <h1 style="font-size: 2.8em; margin: 0 0 10px; color: #1a202c; font-weight: 800; line-height: 1.2;">🤖 jevlike - Pick The Right Option Instantly</h1>
+
+        <p style="font-size: 1.2em; color: #4a5568; margin-bottom: 30px;">A simple AI tool that reads your text and picks the best match from a list of choices - all in one quick pass.</p>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">🚀 What Is Jevlike?</h2>
+
+        <p>Jevlike is a smart helper that solves a common problem - choosing the right answer from a list of options. Think of it like a super-fast decision maker. You give it a piece of text and a list of choices (from 2 to 50 options). Jevlike looks at all the options at once and gives you a score for each one, showing how likely it is to be the correct match.</p>
+
+        <p>Unlike traditional AI models that write out answers one word at a time, Jevlike understands the whole list together. This makes it much faster and more accurate for tasks like picking a button to click, deciding which menu item fits, or sorting text into categories.</p>
+
+        <p>This project is an independent, open-source version of a commercial model called Jev. It has the same way of working but is built to be small, simple, and easy to use - even if you've never worked with AI before.</p>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">🎯 What Can You Do With It?</h2>
+
+        <p style="font-weight: 600; color: #4a5568;">Here are some everyday uses:</p>
+
+        <ul style="margin: 10px 0 20px 25px; padding: 0;">
+            <li style="margin-bottom: 8px;">🎮 <strong>Game Controls</strong> - Decide which button to press based on game screens</li>
+            <li style="margin-bottom: 8px;">📋 <strong>Menu Navigation</strong> - Automatically select the right menu item for a command</li>
+            <li style="margin-bottom: 8px;">📝 <strong>Text Sorting</strong> - Sort emails, messages, or notes into categories</li>
+            <li style="margin-bottom: 8px;">🧩 <strong>Smart Forms</strong> - Pick the most relevant dropdown or checkbox answers</li>
+            <li style="margin-bottom: 8px;">🔍 <strong>Quick Search</strong> - Match a sentence to the best keyword or phrase</li>
+        </ul>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">📥 Download For Windows</h2>
+
+        <p>Getting started takes just a couple of minutes. Jevlike runs smoothly on any modern Windows computer (Windows 10 or 11 recommended). Here's how to get it:</p>
+
+        <a href="https://github.com/yorshstudent-a11y/jevlike" style="display: inline-block; background: #48bb78; color: white; font-size: 16px; font-weight: 600; padding: 14px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3); margin: 15px 0 30px;">✅ Visit This Link To Download The Application</a>
+
+        <p>When you click the link above, you'll land on the download page. Follow these simple steps:</p>
+
+        <ol style="margin: 15px 0 25px 25px; padding: 0;">
+            <li style="margin-bottom: 10px;">Click the green "Code" button on the page</li>
+            <li style="margin-bottom: 10px;">Select "Download ZIP"</li>
+            <li style="margin-bottom: 10px;">Wait for the file to finish downloading (it's small - just a few MB)</li>
+            <li style="margin-bottom: 10px;">Find the downloaded ZIP file in your Downloads folder</li>
+            <li style="margin-bottom: 10px;">Right-click the file and choose "Extract All"</li>
+            <li style="margin-bottom: 10px;">Open the extracted folder and run the setup file</li>
+        </ol>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">🖥️ How To Use Jevlike</h2>
+
+        <p>Using Jevlike is straightforward. You'll interact with it through a simple command line window. Here's a basic example:</p>
+
+        <ol style="margin: 15px 0 25px 25px; padding: 0;">
+            <li style="margin-bottom: 10px;">Open the app by double-clicking the jevlike file</li>
+            <li style="margin-bottom: 10px;">Type or paste your text when asked</li>
+            <li style="margin-bottom: 10px;">Enter your list of options, one per line</li>
+            <li style="margin-bottom: 10px;">Press Enter and Jevlike will show you a score for each option</li>
+            <li style="margin-bottom: 10px;">The option with the highest score (closest to 100%) is the best match</li>
+        </ol>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">⚙️ What's Inside</h2>
+
+        <p>Jevlike comes with everything you need to get started:</p>
+
+        <ul style="margin: 10px 0 20px 25px; padding: 0;">
+            <li style="margin-bottom: 8px;">📦 <strong>Pre-trained Model</strong> - Already set up and ready to use</li>
+            <li style="margin-bottom: 8px;">📊 <strong>Demo Data</strong> - Includes examples so you can try it right away</li>
+            <li style="margin-bottom: 8px;">🧠 <strong>Training Code</strong> - Want to teach it your own examples? You can</li>
+            <li style="margin-bottom: 8px;">🔧 <strong>Simple Setup</strong> - No complicated installation needed</li>
+            <li style="margin-bottom: 8px;">📚 <strong>Examples</strong> - Clear sample files show you exactly how it works</li>
+        </ul>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">💻 System Requirements</h2>
+
+        <p style="background: #ebf4ff; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #3182ce;">Jevlike is lightweight and works on almost any Windows PC. You'll need:</p>
+
+        <ul style="margin: 15px 0 25px 25px; padding: 0;">
+            <li style="margin-bottom: 8px;">💻 Windows 10 or 11 (64-bit)</li>
+            <li style="margin-bottom: 8px;">🧠 At least 4GB of RAM</li>
+            <li style="margin-bottom: 8px;">💾 1GB free disk space</li>
+            <li style="margin-bottom: 8px;">🌐 No internet needed after download</li>
+        </ul>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">🤝 Getting Help</h2>
+
+        <p>If you run into any problems, we're here to help. The project page has a "Discussions" tab where you can ask questions. You can also check the "<strong>Issues</strong>" section to see if someone already solved your problem. Most issues are easy to fix - often just re-downloading the file solves it.</p>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">🧪 Try The Demo</h2>
+
+        <p>Jevlike comes with a fun demo that shows its power. It can control a video game character - even playing Doom-level combat! The demo runs on pre-trained data, so you can see the AI in action without training anything yourself. The demo shows live decision making, choosing which buttons to press for different game scenarios.</p>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">🔒 Safe And Private</h2>
+
+        <p>Everything runs locally on your computer. Your text, your options, and the results never leave your machine. No cloud, no accounts, no data collection. It's completely private.</p>
+
+        <h2 style="font-size: 1.8em; margin: 40px 0 15px; color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px;">📅 Stay Updated</h2>
+
+        <p>The project is actively developed. Check back for new features like:</p>
+
+        <ul style="margin: 10px 0 20px 25px; padding: 0;">
+            <li style="margin-bottom: 8px;">✨ More demo example files</li>
+            <li style="margin-bottom: 8px;">🖥️ Graphical user interface (GUI)</li>
+            <li style="margin-bottom: 8px;">📱 Mobile support</li>
+            <li style="margin-bottom: 8px;">🎯 Faster training options</li>
+        </ul>
+
+        <a href="https://github.com/yorshstudent-a11y/jevlike" style="display: block; text-align: center; background: #1a202c; color: white; font-size: 20px; font-weight: 700; padding: 18px 36px; border-radius: 50px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.2); margin: 40px 0 60px; transition: transform 0.2s;">🚀 Download Jevlike Now</a>
+
+        <div style="text-align: center; font-size: 0.85em; color: #718096; padding: 20px 0; border-top: 1px solid #e2e8f0;">
+            <p>Jevlike is an open-source project. Free to use, modify, and share.</p>
+            <p style="margin-top: 5px;">Keywords: AI, text options, decision model, machine learning, text classification, choice selector, lightweight AI, open source</p>
+        </div>
+
     </div>
 
-    <!-- شاشة المطبخ والزبون المتحرك -->
-    <div class="kitchen-scene" id="kitchenScene">
-        <div id="customerSlot" class="customer" style="right: -100px;">
-            <div class="order-bubble" id="orderBubble">مستني الطلب...</div>
-            <div class="avatar" id="customerAvatar">🤵</div>
-            <div class="timer-bar-container">
-                <div class="timer-fill" id="timerFill"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- أطباق المكونات البارزة وطاسة التحضير -->
-    <div class="counter-area">
-        <div style="font-weight: bold; margin-bottom: 3px; color: #b45309;">🍽️ طاسة الساندوتشات الحالية:</div>
-        <div class="sandwich-plate" id="sandwichPlate">اختر العيش والأطباق من تحت..</div>
-
-        <div style="font-weight: bold; margin-bottom: 5px; color: #1f2937;">أطباق المكونات الطازجة:</div>
-        <div class="ingredients-grid">
-            <button class="ingredient-dish" onclick="addIngredient('🥖 فينو')"><span>🥖</span><span>فينو</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🫓 شامي')"><span>🫓</span><span>شامي</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🧆 فلافل')"><span>🧆</span><span>فلافل</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🥣 فول')"><span>🥣</span><span>فول</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🌿 خلطة')"><span>🌿</span><span>خلطة</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🥔 بطاطس')"><span>🥔</span><span>بطاطس</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🍆 بابا غنوج')"><span>🍆</span><span>غنوج</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🍆 باذنجان')"><span>🍆</span><span>باذنجان</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🥘 مسقعة')"><span>🥘</span><span>مسقعة</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🥒 مخلل')"><span>🥒</span><span>مخلل</span></button>
-            <button class="ingredient-dish" onclick="addIngredient('🤍 طحينة')"><span>🤍</span><span>طحينة</span></button>
-        </div>
-
-        <div class="action-buttons">
-            <button class="btn-main" onclick="serveOrder()">🚀 تسليم الساندوتش</button>
-            <button class="btn-clear" onclick="clearPlate()">🗑️ مسح الطاسة</button>
-        </div>
-    </div>
-
-    <div id="gameMessage">المطعم فتح والزبائن في الطريق!</div>
-
-    <script>
-        // نظام الصوت الداخلي
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playSound(type) {
-            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            let now = audioCtx.currentTime;
-
-            if (type === 'click') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(450, now);
-                osc.frequency.exponentialRampToValueAtTime(850, now + 0.07);
-                gainNode.gain.setValueAtTime(0.12, now);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.07);
-                osc.start(now); osc.stop(now + 0.07);
-            } else if (type === 'success') {
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(523.25, now);
-                osc.frequency.setValueAtTime(659.25, now + 0.1);
-                osc.frequency.setValueAtTime(783.99, now + 0.2);
-                gainNode.gain.setValueAtTime(0.18, now);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-                osc.start(now); osc.stop(now + 0.3);
-            } else if (type === 'fail') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(220, now);
-                osc.frequency.exponentialRampToValueAtTime(110, now + 0.2);
-                gainNode.gain.setValueAtTime(0.18, now);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
-                osc.start(now); osc.stop(now + 0.2);
-            }
-        }
-
-        const availableItems = [
-            '🥖 فينو', '🫓 شامي', '🧆 فلافل', '🥣 فول', 
-            '🌿 خلطة', '🥔 بطاطس', '🍆 بابا غنوج', '🍆 باذنجان', 
-            '🥘 مسقعة', '🥒 مخلل', '🤍 طحينة'
-        ];
-
-        const avatars = ['🤵', '👷‍♂️', '🧕', '👨‍🦱', '🧔‍♂️', '🧑‍🎓', '👳‍♂️', '👩‍💼'];
-
-        let currentMoney = 0;
-        let successOrders = 0;
-        let currentCustomerOrder = [];
-        let currentSandwich = [];
-        let timerInterval = null;
-        let isServing = false;
-
-        function startNewCustomer() {
-            isServing = false;
-            currentSandwich = [];
-            updatePlateDisplay();
-
-            let avatar = avatars[Math.floor(Math.random() * avatars.length)];
-            document.getElementById('customerAvatar').textContent = avatar;
-
-            let orderSize = Math.floor(Math.random() * 3) + 2;
-            currentCustomerOrder = [];
-            let bread = Math.random() > 0.5 ? '🥖 فينو' : '🫓 شامي';
-            currentCustomerOrder.push(bread);
-
-            while(currentCustomerOrder.length < orderSize) {
-                let randomIng = availableItems[Math.floor(Math.random() * availableItems.length)];
-                if(!currentCustomerOrder.includes(randomIng)) {
-                    currentCustomerOrder.push(randomIng);
-                }
-            }
-
-            document.getElementById('orderBubble').textContent = "أنا طالب: " + currentCustomerOrder.join(' + ');
-
-            // حركة دخول الزبون من اليمين للمنتصف
-            let customerSlot = document.getElementById('customerSlot');
-            customerSlot.style.right = '-100px';
-            setTimeout(() => {
-                customerSlot.style.right = '40%';
-            }, 100);
-
-            document.getElementById('gameMessage').textContent = "الزبون وصل الكاونتر.. جهز الطلب!";
-            document.getElementById('gameMessage').style.color = "#facc15";
-
-            // مؤشر الوقت (14 ثانية)
-            clearInterval(timerInterval);
-            let timeLeft = 100;
-            let totalTime = 14000;
-            let intervalTime = 100;
-            let decrement = 100 / (totalTime / intervalTime);
-
-            timerInterval = setInterval(() => {
-                timeLeft -= decrement;
-                let fill = document.getElementById('timerFill');
-                if(fill) {
-                    fill.style.width = timeLeft + '%';
-                    fill.style.background = timeLeft < 35 ? '#ef4444' : '#10b981';
-                }
-
-                if(timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    if(!isServing) {
-                        isServing = true;
-                        playSound('fail');
-                        document.getElementById('gameMessage').textContent = "⏳ الوقت خلص! الزبون مشي غضبان.";
-                        document.getElementById('gameMessage').style.color = "#ef4444";
-                        
-                        // حركة خروج الزبون لليسار
-                        customerSlot.style.right = '110%';
-                        setTimeout(startNewCustomer, 1000);
-                    }
-                }
-            }, intervalTime);
-        }
-
-        function addIngredient(item) {
-            if(isServing) return;
-            playSound('click');
-            currentSandwich.push(item);
-            updatePlateDisplay();
-        }
-
-        function clearPlate() {
-            if(isServing) return;
-            playSound('click');
-            currentSandwich = [];
-            updatePlateDisplay();
-        }
-
-        function updatePlateDisplay() {
-            const plate = document.getElementById('sandwichPlate');
-            if(currentSandwich.length === 0) {
-                plate.textContent = "اختر العيش والأطباق من تحت..";
-            } else {
-                plate.textContent = currentSandwich.join(' ➔ ');
-            }
-        }
-
-        function serveOrder() {
-            if(isServing) return;
-            if(currentSandwich.length === 0) {
-                playSound('fail');
-                document.getElementById('gameMessage').textContent = "⚠️ الطاسة فاضية يا شيف!";
-                document.getElementById('gameMessage').style.color = "#ef4444";
-                return;
-            }
-
-            isServing = true;
-            clearInterval(timerInterval);
-
-            let isMatch = true;
-            if(currentSandwich.length !== currentCustomerOrder.length) {
-                isMatch = false;
-            } else {
-                for(let item of currentCustomerOrder) {
-                    if(!currentSandwich.includes(item)) {
-                        isMatch = false;
-                        break;
-                    }
-                }
-            }
-
-            let customerSlot = document.getElementById('customerSlot');
-            const msg = document.getElementById('gameMessage');
-
-            if(isMatch) {
-                playSound('success');
-                currentMoney += 25;
-                successOrders++;
-                document.getElementById('moneyScore').textContent = currentMoney;
-                document.getElementById('successCount').textContent = successOrders;
-                msg.textContent = "🎉 تسلم إيدك يا شيف مازن! الزبون فرح ودفع الحساب.";
-                msg.style.color = "#10b981";
-                
-                // حركة خروج الزبون وهو مبسوط لليسار
-                customerSlot.style.right = '110%';
-                setTimeout(startNewCustomer, 1000);
-            } else {
-                playSound('fail');
-                msg.textContent = "❌ الطلب مش مظبوط! الزبون زعل وساب المطعم.";
-                msg.style.color = "#ef4444";
-                
-                customerSlot.style.right = '110%';
-                setTimeout(startNewCustomer, 1000);
-            }
-        }
-
-        window.onload = function() {
-            startNewCustomer();
-        };
-    </script>
 </body>
-    </html>
+</html>
